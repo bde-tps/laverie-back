@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Machine extends Model
+class Room extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $fillable = [
-        'type',
+        'name',
     ];
+
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

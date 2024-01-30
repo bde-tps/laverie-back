@@ -9,23 +9,24 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;
+    const UPDATED_AT = null;
 
     protected $fillable = [
-        'machine_id',
-        'member_id',
-        'date',
-        'duration',
-        'price',
-        'paid',
-        'paid_date',
-        'paid_amount',
-        'paid_method',
-        'paid_reference',
-        'paid_comment',
+        'first_name',
+        'last_name',
+        'phone',
+        'machine',
         'comment',
-        'created_at',
-        'updated_at',
+        'start_at',
+        'end_at',
+        'room_id',
     ];
+
+    public $timestamps = true;
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
 
 }

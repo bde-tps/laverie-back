@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/reservations', [ReservationController::class, 'store']);
+
+Route::get('/reservations', [ReservationController::class, 'index']);
+
+Route::get('/rooms', [RoomController::class, 'index']);
+
+Route::get('/rooms/{room}', [RoomController::class, 'show']);

@@ -13,18 +13,21 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->bigInteger('machine_id')->unsigned()->nullable();
+
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone');
+
+            $table->unsignedBigInteger('room_id');
 
             $table->text('comment')->nullable();
 
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('start_at');
+            $table->timestamp('end_at');
 
             $table->timestamp('created_at')->useCurrent();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('machine_id')->references('id')->on('machines')->onDelete('set null');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
 
